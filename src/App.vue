@@ -1,5 +1,5 @@
 <template>
-  <div id="app bv-exmaple-row">
+  <div id="app ">
     <b-row>
       <b-col sm="2" style="padding: 0px; background-color: black"
         ><SlideBar
@@ -29,5 +29,6 @@ export default {
 }
 .app {
   margin: 0;
+  height: auto;
 }
 </style>

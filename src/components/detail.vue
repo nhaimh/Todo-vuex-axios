@@ -1,11 +1,12 @@
 <template>
   <!-- <button @click="showDetail = true">Show Modal</button> -->
-  <b-modal id="bv-modal-example" hide-footer>
+  <!-- <b-modal id="bv-modal-example" hide-footer> -->
+  <div class="container">
     <div v-if="showDetail">
       <div class="modal-overlay" @click="$emit('close-modal')"></div>
       <div class="modal-content">
         <header class="modal-header">
-          <h3>Modal Title</h3>
+          <h3>Show Detail</h3>
           <b-button @click="$emit('close-modal')">X</b-button>
         </header>
         <section class="modal-body">
@@ -42,7 +43,8 @@
         </footer>
       </div>
     </div>
-  </b-modal>
+  </div>
+  <!-- </b-modal> -->
 </template>
 
 <script>
@@ -79,6 +81,7 @@ export default {
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  width: 800px !important;
 }
 
 .modal-header {
@@ -92,5 +95,8 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
+}
+.container {
+  display: flex;
 }
 </style>

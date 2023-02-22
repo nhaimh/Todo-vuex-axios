@@ -1,5 +1,5 @@
 <template>
-  <div style="display: flex">
+  <div class="container" style="display: flex">
     <!-- <button @click="showModal = true">Show Modal</button> -->
 
     <div v-if="showEdit" class="show">
@@ -7,25 +7,29 @@
       <div class="modal-content">
         <header class="modal-header">
           <h3>Modal Title</h3>
-          <b-button @click="$emit('close-modal')">X</b-button>
+          <b-button @click="$emit('close-modal')" variant="danger">X</b-button>
         </header>
         <section class="modal-body">
           <div class="form-edit">
             <a>Id</a>
             <a>{{ currentItem.id }}</a>
             <a>Tiêu đề</a>
-            <input type="text" v-model="currentItem.title" />
+            <b-input type="text" v-model="currentItem.title" />
             <a>Trạng thái</a>
-            <input type="text" v-model="currentItem.status" />
+            <b-input type="text" v-model="currentItem.status" />
             <a>Hình ảnh</a>
-            <input type="text" v-model="currentItem.image" />
+            <b-input type="text" v-model="currentItem.image" />
             <a>Chi tiết</a>
-            <input type="text" v-model="currentItem.description" />
+            <b-input type="text" v-model="currentItem.description" />
           </div>
         </section>
         <footer class="modal-footer">
-          <b-button @click="$emit('close-modal')">Close</b-button>
-          <b-button @click="Update()">Update</b-button>
+          <b-button @click="$emit('close-modal')" variant="danger"
+            >Close</b-button
+          >
+          <b-button variant="outline-primary" @click="Update()"
+            >Update</b-button
+          >
         </footer>
       </div>
     </div>
@@ -35,7 +39,7 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  name: " EditItem",
+  name: " vvEditItem",
   data() {
     return {
       showEdit: true,
@@ -55,6 +59,8 @@ export default {
         status: this.currentItem.status,
         createdDate: this.currentItem.createdDate,
       });
+      this.showEdit = false;
+      this.getItem(params);
     },
   },
 };
@@ -79,6 +85,7 @@ export default {
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  width: 515px !important;
 }
 
 .modal-header {
@@ -96,5 +103,10 @@ export default {
 
 .show {
   justify-content: center;
+  display: flex;
+}
+.form-edit {
+  display: flex;
+  flex-direction: column;
 }
 </style>

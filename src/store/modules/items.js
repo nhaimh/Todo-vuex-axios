@@ -3,10 +3,11 @@ const ItemModules = {
   state: {
     items: [],
     itemDetail: {},
-
+    totalrow: 0,
   },
   getters: {
     items: (state) => state.items,
+    totalrow: state => state.totalrow
 
   },
   actions: {
@@ -14,7 +15,7 @@ const ItemModules = {
       try {
         const response = await axios.post(`http://192.168.1.200:9000/api/Blog/List`, params);
         commit("SET_ITEMS", response.data.result.data);
-        // console.log(response.data.result.data);
+        commit("GETTOTAL", response.data.result.totalRows)
 
       } catch (error) {
         console.log(error);
@@ -71,6 +72,9 @@ const ItemModules = {
     },
     GETBY_ID(state, items) {
       state.items = items;
+    },
+    GETTOTAL(state, totalrow) {
+      state.totalrow = totalrow
     }
 
   },
