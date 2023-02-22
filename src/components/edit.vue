@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div style="display: flex">
     <!-- <button @click="showModal = true">Show Modal</button> -->
 
-    <div v-if="showModal">
-      <div class="modal-overlay" @click="showModal = false"></div>
+    <div v-if="showEdit" class="show">
+      <div class="modal-overlay" @click="$emit('close-modal')"></div>
       <div class="modal-content">
         <header class="modal-header">
           <h3>Modal Title</h3>
-          <button @click="showModal = false">X</button>
+          <b-button @click="$emit('close-modal')">X</b-button>
         </header>
         <section class="modal-body">
           <div class="form-edit">
@@ -24,8 +24,8 @@
           </div>
         </section>
         <footer class="modal-footer">
-          <button @click="showModal = false">Close</button>
-          <button @click="Update">Update</button>
+          <b-button @click="$emit('close-modal')">Close</b-button>
+          <b-button @click="Update()">Update</b-button>
         </footer>
       </div>
     </div>
@@ -38,7 +38,7 @@ export default {
   name: " EditItem",
   data() {
     return {
-      showModal: true,
+      showEdit: true,
       currentItem: Object.assign({}, this.item),
     };
   },
@@ -94,16 +94,7 @@ export default {
   margin-top: 20px;
 }
 
-button {
-  padding: 10px 20px;
-  background: lightblue;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.form-edit {
-  display: flex;
-  flex-direction: column;
+.show {
+  justify-content: center;
 }
 </style>

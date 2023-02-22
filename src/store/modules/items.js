@@ -2,7 +2,7 @@ import axios from "axios";
 const ItemModules = {
   state: {
     items: [],
-    itemSelected: {},
+    itemDetail: {},
 
   },
   getters: {
@@ -14,12 +14,21 @@ const ItemModules = {
       try {
         const response = await axios.post(`http://192.168.1.200:9000/api/Blog/List`, params);
         commit("SET_ITEMS", response.data.result.data);
-        console.log(response.data.result.data);
+        // console.log(response.data.result.data);
 
       } catch (error) {
         console.log(error);
       }
     },
+    async getById({ commit }, item) {
+      try {
+        const response = await axios.get(`http://192.168.1.200:9000/api/Blog/GetById?Id=${item}`)
+        commit("GETBY_ID", response.data.result);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    ,
     async deleteItem({ commit }, itemId) {
       try {
         await axios.delete(`http://192.168.1.200:9000/api/Blog/Delete/?Id=${itemId}`);
@@ -59,6 +68,9 @@ const ItemModules = {
     },
     UPDATE_ITEM(state, currentItem) {
       state.items.push(currentItem)
+    },
+    GETBY_ID(state, items) {
+      state.items = items;
     }
 
   },

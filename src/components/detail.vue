@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <!-- <button @click="showModal = true">Show Modal</button> -->
-    <div v-if="showModal">
-      <div class="modal-overlay" @click="showModal = false"></div>
+  <!-- <button @click="showDetail = true">Show Modal</button> -->
+  <b-modal id="bv-modal-example" hide-footer>
+    <div v-if="showDetail">
+      <div class="modal-overlay" @click="$emit('close-modal')"></div>
       <div class="modal-content">
         <header class="modal-header">
           <h3>Modal Title</h3>
-          <button @click="showModal = false">X</button>
+          <b-button @click="$emit('close-modal')">X</b-button>
         </header>
         <section class="modal-body">
           <div style="margin: 15px 0px">
@@ -38,14 +38,14 @@
           </div>
         </section>
         <footer class="modal-footer">
-          <button @click="showModal = false">Close</button>
+          <b-button @click="$emit('close-modal')">Close</b-button>
         </footer>
       </div>
     </div>
-  </div>
+  </b-modal>
 </template>
-  
-  <script>
+
+<script>
 export default {
   name: "vvDetail",
   props: {
@@ -54,13 +54,13 @@ export default {
   },
   data() {
     return {
-      showModal: true,
+      showDetail: true,
     };
   },
 };
 </script>
-  
-  <style>
+
+<style>
 .modal-overlay {
   position: fixed;
   top: 0;

@@ -1,17 +1,11 @@
 <template>
   <div class="Home">
     <div class="d-flex justify-content-between h-100" style="margin-left: 15px">
-      <div
-        class="d-flex align-items-center justify-content-between"
-        style="width: 180px"
-      >
+      <div class="d-flex align-items-center justify-content-between" style="width: 180px">
         <b-icon icon="gear" />
         <a>Chuyển đổi hệ thống</a>
       </div>
-      <div
-        class="d-flex align-items-center justify-content-between"
-        style="width: 300px"
-      >
+      <div class="d-flex align-items-center justify-content-between" style="width: 300px">
         <b-icon icon="person" />
         <a>luongngochai29@gmail.com</a>
         <b-icon icon="chat-dots"></b-icon>
@@ -29,76 +23,62 @@
           class="d-flex justify-content-around border border-1 align-items-center mx-1"
           style="width: 200px; padding: 5px"
         >
-          <b-icon icon="circle-fill" style="color: rgb(226, 221, 221)"></b-icon>
-          <a>Quản lý mã giảm giá</a>
+          <b-radio>Quản lý mã giảm giá</b-radio>
           <b-icon icon="x"></b-icon>
         </div>
         <div
           class="d-flex justify-content-around border border-1 align-items-center mx-1"
           style="width: 200px; padding: 5px"
         >
-          <b-icon icon="circle-fill" style="color: rgb(226, 221, 221)"></b-icon>
-          <a>Dư liệu /địa điểm</a>
+          <b-radio>Dữ liệu /Địa điểm</b-radio>
           <b-icon icon="x"></b-icon>
         </div>
         <div
           class="d-flex justify-content-around border border-1 align-items-center mx-1"
           style="width: 200px; padding: 5px"
         >
-          <b-icon icon="circle-fill" style="color: rgb(226, 221, 221)"></b-icon>
-          <a>nội dung/tag</a>
+          <b-radio>nội dung/tag</b-radio>
           <b-icon icon="x"></b-icon>
         </div>
         <div
           class="d-flex justify-content-around border border-1 align-items-center mx-1"
           style="width: 230px; padding: 5px"
         >
-          <b-icon icon="circle-fill" style="color: rgb(226, 221, 221)"></b-icon>
-          <a>Dữ liệu/Tạo trường học</a>
+          <b-radio>Dữ liệu/Tạo trường học</b-radio>
+
           <b-icon icon="x"></b-icon>
         </div>
         <div
           class="d-flex justify-content-around border border-1 align-items-center mx-1"
           style="width: 200px; padding: 5px"
         >
-          <b-icon icon="circle-fill" style="color: rgb(26, 117, 252)"></b-icon>
-          <a>Nội dung/Sự kiện</a>
+          <b-radio>Nội dung/Sự kiện</b-radio>
           <b-icon icon="x"></b-icon>
         </div>
       </div>
       <div class="d-flex align-items-center">
         <b-icon icon="chevron-right"></b-icon>
-        <b-icon
-          icon="arrow-down-circle border-start"
-          style="padding: 5px"
-        ></b-icon>
+        <b-icon icon="arrow-down-circle border-start" style="padding: 5px"></b-icon>
         <b-icon icon="border-start" style="padding: 5px"></b-icon>
       </div>
     </div>
 
-    <div class="row m-1 form-container three" style="background-color: #ffffff">
-      <div class="form_input" v-if="showAdditem">
-        <div>
-          <label for="cars">Description</label>
-          <select name="cars" id="cars" v-model="form.description">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
-        </div>
+    <div
+      class="row m-1 form-container three d-flex justify-content-space-between"
+      style="background-color: #ffffff"
+    >
+      <div class="d-flex flex-row" v-if="showAdditem">
+        <b-div>
+          <b-label for="cars">Description</b-label>
+          <b-input type="text" v-model="form.description"></b-input>
+        </b-div>
         <div>
           <label>Tên tiêu đề:</label>
-          <input type="text" placeholder="Nhập tiêu đề" v-model="form.title" />
+          <b-input type="text" placeholder="Nhập tiêu đề" v-model="form.title" />
         </div>
         <div>
           <label for="cars">Hình Thức sự kiện</label>
-          <select name="cars" id="cars" v-model="form.image">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
+          <b-input type="text" v-model="form.image"></b-input>
         </div>
         <b-button
           class="bg-primary border border-primary"
@@ -115,32 +95,25 @@
           Thêm mới</b-button
         >
       </div>
-
-      <div style="display: flex !important; justify-content: flex-end">
+      <div class="d-flex flex-row" style="">
         <div>
-          <button
-            class="icon border border-light bg-primary text-white rounded p-1 m-2"
-          >
-            <input type="text" v-model="params.keyWord" />
+          <input type="text" v-model="params.keyWord" />
+          <button class="icon border border-light bg-primary text-white rounded p-1 m-2">
             <b-button
               class="bg-primary border border-primary"
               id="toggle-btn"
               @click="getItem()"
             >
-              Tìm kiếm<b-icon icon="search" />
+              Tìm kiếm
+              <b-icon icon="search" />
             </b-button>
           </button>
         </div>
-        <button
-          class="icon border border-light rounded p-1 m-2"
-          @click="lammoi()"
-        >
+        <button class="icon border border-light rounded p-1 m-2" @click="lammoi()">
           <b-icon icon="arrow-clockwise"></b-icon>
           <label type="button" class="mx-1">Làm mới</label>
         </button>
-        <button
-          class="icon border border-light bg-primary text-white rounded p-1 m-2"
-        >
+        <button class="icon border border-light bg-primary text-white rounded p-1 m-2">
           <b-button
             class="bg-primary border border-primary"
             id="toggle-btn"
@@ -151,8 +124,18 @@
         </button>
       </div>
     </div>
-    <editItem v-if="currentItem" v-bind:item="currentItem" />
-    <detailItem v-if="detail" v-bind:item="detail" />
+    <editItem
+      v-if="showEdit"
+      :item="currentItem"
+      v-show="showEdit"
+      @close-modal="showEdit = false"
+    />
+    <detailItem
+      v-if="showDetail"
+      :item="detail"
+      v-show="showDetail"
+      @close-modal="showDetail = false"
+    />
     <div style="margin: 15px 0px">
       <table class="table bg-light">
         <thead>
@@ -202,17 +185,20 @@
             <td>{{ item.status }}</td>
             <td>
               <b-button-group>
-                <b-button variant="outline-primary" @click="currentItem = item">
+                <b-button
+                  variant="outline-primary"
+                  @click="(currentItem = item), (showEdit = true)"
+                >
                   <b-icon icon="pencil-square"> </b-icon>
                 </b-button>
 
-                <b-button variant="outline-primary" @click="detail = item">
-                  <b-icon icon="person-fill"> </b-icon>
-                </b-button>
                 <b-button
                   variant="outline-primary"
-                  @click="deleteItem(item.id)"
+                  @click="(showDetail = true), (detail = item)"
                 >
+                  <b-icon icon="person-fill"> </b-icon>
+                </b-button>
+                <b-button variant="outline-primary" @click="deleteItem(item.id)">
                   <b-icon icon="trash"></b-icon>
                 </b-button>
               </b-button-group>
@@ -235,7 +221,7 @@ export default {
       currentItem: null,
       detail: null,
       params: {
-        pageSize: 10,
+        pageSize: 12,
         pageIndex: 1,
         status: 0,
         keyWord: null,
@@ -247,6 +233,8 @@ export default {
         status: 0,
       },
       showAdditem: false,
+      showDetail: false,
+      showEdit: false,
     };
   },
 
@@ -264,7 +252,7 @@ export default {
     this.getItem(this.params);
   },
   methods: {
-    ...mapActions(["deleteItem", "getItem", "addItem"]),
+    ...mapActions(["deleteItem", "getItem", "addItem", "getById"]),
     themItem() {
       this.addItem(this.form);
       this.showAdditem = false;
@@ -282,7 +270,6 @@ export default {
     close() {
       this.showAdditem = false;
     },
-
     // listItem() {
     //   const params = {
     //     sortExpression: null,
@@ -339,15 +326,16 @@ export default {
 .Home {
   background: #ececec;
 }
+
 .form_input {
-  display: flex !important;
-  flex-wrap: wrap;
   width: 200px !important;
 }
+
 .form-container {
   display: flex;
   align-content: center;
 }
+
 .three {
   display: flex !important;
   justify-content: flex-end;
