@@ -1,8 +1,6 @@
 <template>
-  <div class="container" style="display: flex">
-    <!-- <button @click="showModal = true">Show Modal</button> -->
-
-    <div v-if="showEdit" class="show">
+  <div class="modal fade show" tabindex="-1" role="dialog" v-if="showEdit">
+    <div class="modal-dialog" role="document">
       <div class="modal-overlay" @click="$emit('close-modal')"></div>
       <div class="modal-content">
         <header class="modal-header">
@@ -12,24 +10,20 @@
         <section class="modal-body">
           <div class="form-edit">
             <a>Id</a>
-            <a>{{ currentItem.id }}</a>
+            <a>{{ itemDetail.id }}</a>
             <a>Tiêu đề</a>
-            <b-input type="text" v-model="currentItem.title" />
+            <b-input type="text" v-model="itemDetail.title" />
             <a>Trạng thái</a>
-            <b-input type="text" v-model="currentItem.status" />
+            <b-input type="text" v-model="itemDetail.status" />
             <a>Hình ảnh</a>
-            <b-input type="text" v-model="currentItem.image" />
+            <b-input type="text" v-model="itemDetail.image" />
             <a>Chi tiết</a>
-            <b-input type="text" v-model="currentItem.description" />
+            <b-input type="text" v-model="itemDetail.description" />
           </div>
         </section>
         <footer class="modal-footer">
-          <b-button @click="$emit('close-modal')" variant="danger"
-            >Close</b-button
-          >
-          <b-button variant="outline-primary" @click="Update()"
-            >Update</b-button
-          >
+          <b-button @click="$emit('close-modal')" variant="danger">Close</b-button>
+          <b-button variant="outline-primary" @click="Update()">Update</b-button>
         </footer>
       </div>
     </div>
@@ -37,31 +31,43 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name: " vvEditItem",
+  name: "vvEditItem",
   data() {
     return {
       showEdit: true,
-      currentItem: Object.assign({}, this.item),
     };
   },
-  props: {
-    item: Object,
-  },
+  props: {},
   methods: {
-    ...mapActions(["updateItem", "getItem"]),
+    ...mapActions(["updateItem", "getItem", "addItem"]),
     Update() {
-      this.updateItem({
-        title: this.currentItem.title,
-        description: this.currentItem.description,
-        image: this.currentItem.image,
-        status: this.currentItem.status,
-        createdDate: this.currentItem.createdDate,
+      if (this.itemDetail.id) {
+        this.updateItem({
+          id: this.itemDetail.id,
+          title: this.itemDetail.title,
+          description: this.itemDetail.description,
+          image: this.itemDetail.image,
+          status: this.itemDetail.status,
+          createdDate: this.itemDetail.createdDate,
+        });
+        return;
+      }
+      this.addItem({
+        title: this.itemDetail.title,
+        description: this.itemDetail.description,
+        image: this.itemDetail.image,
+        status: this.itemDetail.status,
+        createdDate: this.itemDetail.createdDate,
       });
+
       this.showEdit = false;
-      this.getItem(params);
+      this.$emit("close-modal", true);
     },
+  },
+  computed: {
+    ...mapGetters(["itemDetail"]),
   },
 };
 </script>
@@ -103,7 +109,7 @@ export default {
 
 .show {
   justify-content: center;
-  display: flex;
+  display: flex !important;
 }
 .form-edit {
   display: flex;

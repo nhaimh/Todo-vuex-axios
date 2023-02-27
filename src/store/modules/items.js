@@ -7,7 +7,8 @@ const ItemModules = {
   },
   getters: {
     items: (state) => state.items,
-    totalrow: state => state.totalrow
+    totalrow: state => state.totalrow,
+    itemDetail: (state) => state.itemDetail
 
   },
   actions: {
@@ -21,10 +22,11 @@ const ItemModules = {
         console.log(error);
       }
     },
-    async getById({ commit }, item) {
+    async getById({ commit }, itemId) {
       try {
-        const response = await axios.get(`http://192.168.1.200:9000/api/Blog/GetById?Id=${item}`)
+        const response = await axios.get(`http://192.168.1.200:9000/api/Blog/GetById?Id=${itemId}`)
         commit("GETBY_ID", response.data.result);
+        return response.data.result
       } catch (error) {
         console.log(error)
       }
@@ -70,8 +72,8 @@ const ItemModules = {
     UPDATE_ITEM(state, currentItem) {
       state.items.push(currentItem)
     },
-    GETBY_ID(state, items) {
-      state.items = items;
+    GETBY_ID(state, itemDetail) {
+      state.itemDetail = itemDetail;
     },
     GETTOTAL(state, totalrow) {
       state.totalrow = totalrow

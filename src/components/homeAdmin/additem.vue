@@ -34,7 +34,7 @@
       <input type="text" class="p-1 m-2" v-model="params.keyWord" />
       <b-button
         class="icon border border-secondary bg-primary text-white rounded p-1 m-2"
-        @click="getItem(params.keyWord)"
+        @click="getItem(params)"
       >
         Tìm kiếm
       </b-button>

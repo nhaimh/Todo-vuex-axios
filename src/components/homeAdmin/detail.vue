@@ -1,8 +1,6 @@
 <template>
-  <!-- <button @click="showDetail = true">Show Modal</button> -->
-  <!-- <b-modal id="bv-modal-example" hide-footer> -->
-  <div class="container">
-    <div v-if="showDetail">
+  <div class="modal fade show" tabindex="-1" role="dialog" v-if="showDetail">
+    <div class="modal-dialog" role="document">
       <div class="modal-overlay" @click="$emit('close-modal')"></div>
       <div class="modal-content">
         <header class="modal-header">
@@ -25,15 +23,14 @@
               </thead>
               <tbody>
                 <!-- <tr v-for="item in items" :key="item.id"> -->
-                <td scope="col">{{ item.id }}</td>
-                <td scope="col">{{ item.description }}</td>
-                <td scope="col">{{ item.title }}</td>
-                <td>{{ item.createdDate }}</td>
-                <td>{{ item.image }}</td>
+                <td scope="col">{{ itemDetail.id }}</td>
+                <td scope="col">{{ itemDetail.description }}</td>
+                <td scope="col">{{ itemDetail.title }}</td>
+                <td>{{ itemDetail.createdDate }}</td>
+                <td>{{ itemDetail.image }}</td>
                 <td></td>
-                <td>{{ item.status }}</td>
+                <td>{{ itemDetail.status }}</td>
                 <td></td>
-                <!-- </tr> -->
               </tbody>
             </table>
           </div>
@@ -44,20 +41,23 @@
       </div>
     </div>
   </div>
-  <!-- </b-modal> -->
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "vvDetail",
-  props: {
-    detail: Object,
-    item: Object,
-  },
+  props: {},
   data() {
     return {
       showDetail: true,
     };
+  },
+  computed: {
+    ...mapGetters(["itemDetail"]),
+  },
+  methods: {
+    ...mapActions(["getById"]),
   },
 };
 </script>

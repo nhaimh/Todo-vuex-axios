@@ -1,17 +1,7 @@
 <template>
   <div style="margin: 15px 0px">
-    <editItem
-      v-if="showEdit"
-      :item="currentItem"
-      v-show="showEdit"
-      @close-modal="showEdit = false"
-    />
-    <detailItem
-      v-if="showDetail"
-      :item="detail"
-      v-show="showDetail"
-      @close-modal="showDetail = false"
-    />
+    <editItem v-if="showEdit" v-show="showEdit" @close-modal="closeEdit" />
+    <detailItem v-if="showDetail" v-show="showDetail" @close-modal="showDetail = false" />
     <table class="table bg-light">
       <thead>
         <tr>
@@ -62,14 +52,14 @@
             <b-button-group>
               <b-button
                 variant="outline-primary"
-                @click="(currentItem = item), (showEdit = true)"
+                @click="getById(item.id), (showEdit = true)"
               >
                 <b-icon icon="pencil-square"> </b-icon>
               </b-button>
 
               <b-button
                 variant="outline-primary"
-                @click="(showDetail = true), (detail = item)"
+                @click="(showDetail = true), getById(item.id)"
               >
                 <b-icon icon="person-fill"> </b-icon>
               </b-button>
@@ -102,8 +92,6 @@ export default {
   },
   data() {
     return {
-      currentItem: null,
-      detail: null,
       params: {
         pageSize: 5,
         pageIndex: 1,
@@ -132,7 +120,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["deleteItem", "getItem"]),
+    ...mapActions(["deleteItem", "getItem", "getById"]),
+    closeEdit(reload) {
+      this.showEdit = false;
+      if (reload) {
+        this.params.pageIndex = 1;
+        this.getItem(this.params);
+      }
+    },
   },
 };
 </script>
