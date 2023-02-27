@@ -1,6 +1,10 @@
 <template>
   <div vertical class="slidebar">
-    <div class="btn btn-primary w-100">BND SYSTEM</div>
+    <div class="btn btn-primary w-100">
+      <a href="client" class="text-white" style="font-size: large; font-style: inherit"
+        >BnD TECH</a
+      >
+    </div>
     <button v-b-toggle.collapse-a class="w-100 btn-system">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -105,10 +109,8 @@
         /></svg
       >Tương tác
     </button>
-    <b-collapse id="collapse-d" class="mt-1">
-      <b-card>Tương Tác 1</b-card> </b-collapse
-    ><b-collapse id="collapse-d" class="mt-1">
-      <b-card>Tương Tác 2</b-card> </b-collapse
+    <b-collapse id="collapse-d" class="mt-1"> <b-card>Tương Tác 1</b-card> </b-collapse
+    ><b-collapse id="collapse-d" class="mt-1"> <b-card>Tương Tác 2</b-card> </b-collapse
     ><b-collapse id="collapse-d" class="mt-1">
       <b-card>Tương Tác 3</b-card>
     </b-collapse>
@@ -129,7 +131,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .slidebar {
   background-color: black;
   height: max-content;

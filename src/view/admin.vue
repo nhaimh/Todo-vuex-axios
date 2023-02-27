@@ -1,18 +1,18 @@
 <template>
   <div id="app ">
-    <!-- <b-row>
+    <b-row>
       <b-col sm="2" style="padding: 0px; background-color: black"><SlideBar /></b-col>
       <b-col sm="10"><Home /></b-col>
-    </b-row> -->
+    </b-row>
     <router-view />
   </div>
 </template>
 
 <script>
-import Home from "./components/homeAdmin/home.vue";
-import SlideBar from "./components/homeAdmin/slidebar.vue";
+import Home from "../components/homeAdmin/home.vue";
+import SlideBar from "../components/homeAdmin/slidebar.vue";
 export default {
-  name: "App",
+  name: "Admin",
   components: {
     Home,
     SlideBar,

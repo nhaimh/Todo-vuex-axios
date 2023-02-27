@@ -6,6 +6,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import store from "./store/index";
+import router from "./router";
 
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -15,6 +16,7 @@ Vue.use(VueAxios, { $request: axios });
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 new Vue({
+  router,
   render: (h) => h(App),
   store,
 }).$mount("#app");

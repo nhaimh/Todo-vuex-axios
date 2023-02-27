@@ -22,7 +22,9 @@
         <b-input type="text" placeholder="Nhập hình ảnh"></b-input>
       </div>
       <div class="ml-auto d-flex align-items-end">
-        <button class="border border-dark p-1 m-2 rounded" @click="close()">Close</button>
+        <button class="border border-dark p-1 m-2 rounded" @click="showAdditem = false">
+          Close
+        </button>
         <button class="border border-dark p-1 m-2 rounded" @click="themItem()">
           Add
         </button>
@@ -32,7 +34,7 @@
       <input type="text" class="p-1 m-2" v-model="params.keyWord" />
       <b-button
         class="icon border border-secondary bg-primary text-white rounded p-1 m-2"
-        @click="getItem()"
+        @click="getItem(params.keyWord)"
       >
         Tìm kiếm
       </b-button>
@@ -45,7 +47,7 @@
       </b-button>
       <b-button
         class="icon border border-secondary bg-primary text-white rounded p-1 m-2"
-        @click="hideen()"
+        @click="showAdditem = true"
       >
         + Tạo sự kiện</b-button
       >
@@ -92,12 +94,6 @@ export default {
     },
     lammoi() {
       this.params.keyWord = "";
-    },
-    hideen() {
-      this.showAdditem = true;
-    },
-    close() {
-      this.showAdditem = false;
     },
   },
 };
